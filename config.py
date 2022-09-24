@@ -1,5 +1,9 @@
 ##OPEN API STUFF
-OPENAI_API_KEY ='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'
+from dotenv import load_dotenv
+load_dotenv()
+import os
+
+OPENAI_API_KEY =os.getenv("API_KEY")
 
 
 
