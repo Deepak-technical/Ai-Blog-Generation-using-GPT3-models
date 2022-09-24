@@ -1,102 +1,201 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>AiBlog</title>
-
-    <!-- Bootstrap CSS -->
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.png') }}">
-
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="mt-5">Ai Online Blog Writing Tool</h1>
-
-      <p>The AiBlog blog writing tool will allow you to enter a blog topic and keywords --- and get in return a full blog that you can use anywhere. The tool intiially provides a list of topic ideas to choose from, once you select a topic, you can go ahead and generate a full content AI blog.</p>
-
-      <div class="row">
-        <div class="col-lg-6">
-          <form class="" action="/" method="post">
-            <div class="mb-3">
-              <label for="blogTopic" class="form-label">What topic do you want to get blog ideas on?</label>
-              <input type="text" class="form-control" id="blogTopic" name="blogTopic" placeholder="Enter a blog topic">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header class="bg-white dark:bg-gray-900">
+        <nav x-data="{ isOpen: false }" class="relative bg-white dark:bg-gray-900">
+            <div class="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center md:px-24 md:py-6 ">
+                <div class="flex  items-center justify-between ">
+                    <div>
+                        <a class="text-2xl font-bold text-gray-800 transition-colors duration-300 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" href="#">AIBlog Tool</a>
+                    </div>
+        
+                    <!-- Mobile menu button -->
+                    <div class="flex md:hidden">
+                        <button x-cloak @click="isOpen = !isOpen" type="button" class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
+                            <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+                            </svg>
+    
+                            <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+        
+                <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+                <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']" class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-900 md:bg-transparent md:dark:bg-transparent md:mt-0 md:p-0 md:top-0 md:relative md:w-auto md:opacity-100 md:translate-x-0 md:flex md:items-center md:px-24">
+                    <div class="flex flex-col md:flex-row md:mx-6">
+                        <a class="my-2 text-md text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0 md:text-xl" href="#">Home</a>
+                        <a class="my-2 text-md text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0 md:text-xl" href="#">Shop</a>
+                        <a class="my-2 text-md text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0 md:text-xl" href="#">openAI</a>
+                        <a class="my-2 text-md text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0 md:text-xl" href="#">About</a>
+                    </div>
+        
+ 
+                </div>
             </div>
-            <input type="hidden" name="form1" value="form1">
-
-            <button type="submit" id="blogTopicButton" class="btn btn-primary">Generate Blog Ideas</button>
-          </form>
-        </div>
-
-
-
-        <div class="col-lg-6">
-          1. {{blogTopicIdeas|safe}}
-        </div>
-      </div>
-
-
-      <br>
-      <hr>
-      <br>
-
-      <div class="row">
-        <div class="col-lg-6">
-          <form class="" action="/" method="post">
-            <div class="mb-3">
-              <label for="blogSection" class="form-label">Enter the Blog Topic Below that you have selected to write about</label>
-              <input type="text" class="form-control" id="blogSection" name="blogSection" placeholder="Enter the blog title to generate blog sections on">
+        </nav>
+    
+        <div class="container px-6 py-16 mx-auto">
+            <div class="items-center lg:flex lg:px-24">
+                <div class="w-full lg:w-1/2">
+                    <div class="lg:max-w-lg">
+                        <h1 class="text-2xl font-semibold text-gray-800 uppercase dark:text-white lg:text-3xl">Getting Bored From Writing Blogs Daily</h1>
+                        
+                        <p class="my-4 text-gray-600 dark:text-gray-400 md:my-6">Chectout are OpenAI GPT3 Based Model for Auto generation of blogs</p>
+                        
+                        <a href="#" class="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white transition-colors duration-150 transform sm:w-auto bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-600">
+                        
+                            <span class="mx-2">
+                                Create Yours Blog
+                            </span>
+                        </a>
+                    </div>
+                </div>
+    
+                <div class="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
+                    <img class="w-full h-full lg:max-w-2xl" src="https://kit8.net/wp-content/uploads/edd/2022/09/task_priority_preview.jpg" alt="Catalogue-pana.svg">
+                </div>
             </div>
-            <input type="hidden" name="form2" value="form2">
-
-            <button type="submit" class="btn btn-primary">Generate Blog Sections</button>
-          </form>
         </div>
-
-
-
-        <div class="col-lg-6">
-          {{blogSectionIdeas|safe}}
-        </div>
-      </div>
-
-      <br>
-      <hr>
-      <br>
-
-      <div class="row">
-        <div class="col-lg-6">
-          <form class="" action="/" method="post">
-            <div class="mb-3">
-              <label for="blogExpander" class="form-label">Enter the Blog section title you want to expand</label>
-              <input type="text" class="form-control" id="blogExpander" name="blogExpander" placeholder="Enter the blog section title">
+    </header>
+    <section class="bg-white dark:bg-gray-900">
+        <div class="container flex flex-col items-center px-4 py-12 mx-auto text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-600 dark:text-white">
+                How This AIBLog Generation Works
+            </h2>
+    
+            <p class="block max-w-2xl mt-4 text-xl text-gray-500 dark:text-gray-300">The AiBlog blog writing tool will allow you to enter a blog topic and keywords --- and get in return a full blog that you can use anywhere. The tool intiially provides a list of topic ideas to choose from, once you select a topic, you can go ahead and generate a full content AI blog.</p>
+    
+            <div class="mt-6">
+                <div class="inline-flex w-full overflow-hidden rounded-lg shadow sm:w-auto sm:mx-3">
+                    <a href="#" class="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-600 sm:w-auto">
+                     
+                        <span class="mx-2">
+                            Learn About OpenAi | GPT3
+                        </span>
+                    </a>
+                </div>
+    
+                <div class="inline-flex w-full mt-4 overflow-hidden rounded-lg shadow sm:w-auto sm:mx-3 sm:mt-0">
+                    <a href="#" class="inline-flex items-center justify-center w-full px-5 py-3 text-base font-medium text-white transition-colors duration-150 transform sm:w-auto bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-600">
+                        
+                        <span class="mx-2">
+                            Create Yours Blog
+                        </span>
+                    </a>
+                </div>
             </div>
-            <input type="hidden" name="form3" value="form3">
-
-            <button type="submit" class="btn btn-primary">Expand on the title</button>
-          </form>
         </div>
-
-
-
-        <div class="col-lg-6">
-          {{blogExpanded|safe}}
+    </section>
+    <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+        <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">What topic do you want to get blog ideas on?</h2>
+    
+        <form  class="" action="/" method="post">
+            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
+                <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="username">Enter A blog Topic</label>
+                    <input id="username" name="blogTopic" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                </div>
+                <input type="hidden" name="form1" value="form1">
+    
+           
+            </div>
+    
+            <div class="flex mt-6 md:justify-center">
+                <button type="submit" class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Generate Blog Ideas</button>
+            </div>
+        </form>
+        <div class="">
+            {{blogTopicIdeas|safe}}
+          </div>
+    </section>
+    <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+        <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Enter the Blog Topic Below that you have selected to write about</h2>
+    
+        <form class="" action="/" method="post">
+            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
+                <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="username">Enter A blog Topic</label>
+                    <input id="username" type="text" name="blogSection" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                </div>
+                <input type="hidden" name="form2" value="form2">
+    
+           
+            </div>
+    
+            <div class="flex mt-6 md:justify-center">
+                <button type="submit" class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Select a blog Title</button>
+            </div>
+        </form>
+        <div class="">
+            {{blogSectionIdeas|safe}}
+          </div>
+    </section>
+    <section class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+        <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">Enter the Blog section title you want to expand</h2>
+    
+        <form class="" action="/" method="post">
+            <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-1">
+                <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="username">Enter Blog Section Idea</label>
+                    <input id="username" type="text" name="blogExpander" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                </div>
+    
+                <input type="hidden" name="form3" value="form3">
+            </div>
+    
+            <div class="flex mt-6 md:justify-center">
+                <button type="submit" class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">Expand On this Title</button>
+            </div>
+        </form>
+        <div class="">
+            {{blogExpanded|safe}}
+          </div>
+    </section>
+    <footer class="bg-white dark:bg-gray-900">
+        <div class="container px-6 py-10 mx-auto">
+            <div class="text-center">
+                <a href="#"  class="text-2xl justify-center  font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300"><img class="h-1/4 w-1/4 mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/OpenAI_Logo.svg/1200px-OpenAI_Logo.svg.png?20210328085757" alt=""></a>
+    
+                <p class="max-w-md mx-auto my-8 text-xl text-gray-500 dark:text-gray-400">Made with OpenAi GPT3 Pretrained Model</p>
+    
+                <div class="flex flex-col mt-4 sm:flex-row sm:items-center sm:justify-center">
+                    <button class="flex items-center justify-center order-1 w-full px-2 py-2 mt-3 text-sm tracking-wide text-gray-600 capitalize transition-colors duration-300 transform border rounded-md sm:mx-2 dark:border-gray-400 dark:text-gray-300 sm:mt-0 sm:w-auto hover:bg-gray-50 focus:outline-none focus:ring dark:hover:bg-gray-800 focus:ring-gray-300 focus:ring-opacity-40">
+                        <svg class="w-5 h-5 mx-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C21.9939 17.5203 17.5203 21.9939 12 22ZM4 12.172C4.04732 16.5732 7.64111 20.1095 12.0425 20.086C16.444 20.0622 19.9995 16.4875 19.9995 12.086C19.9995 7.68451 16.444 4.10977 12.0425 4.086C7.64111 4.06246 4.04732 7.59876 4 12V12.172ZM10 16.5V7.5L16 12L10 16.5Z" fill="currentColor"></path>
+                </svg>
+    
+                        <span class="mx-1">View Demo</span>
+                    </button>
+    
+                    <button class="w-full px-5 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md sm:mx-2 sm:order-2 sm:w-auto hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">Get started</button>
+                </div>
+            </div>
+    
+            <hr class="my-10 border-gray-200 dark:border-gray-700" />
+    
+            <div class="flex flex-col items-center sm:flex-row sm:justify-between">
+                <p class="text-sm text-gray-400">© Copyright 2021. All Rights Reserved.</p>
+    
+                <div class="flex mt-3 -mx-2 sm:mt-0">
+                    <a href="#" class="mx-2 text-sm text-gray-400 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Teams </a>
+    
+                    <a href="#" class="mx-2 text-sm text-gray-400 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Privacy </a>
+    
+                    <a href="#" class="mx-2 text-sm text-gray-400 transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Cookies </a>
+                </div>
+            </div>
         </div>
-      </div>
-
-
-    </div>
-
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-  </body>
+    </footer>
+</body>
 </html>
